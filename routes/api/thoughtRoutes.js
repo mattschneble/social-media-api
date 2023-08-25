@@ -2,6 +2,8 @@
 
 // Import express router
 const router = require('express').Router();
+
+// Import the thought controller
 const {
     getAllThoughts,
     getOneThought,
