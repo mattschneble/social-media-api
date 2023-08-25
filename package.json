@@ -4,6 +4,7 @@
   "description": "This HW Assignment for the UCB Full Stack Coding Camp.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
