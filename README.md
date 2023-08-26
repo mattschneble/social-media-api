@@ -13,7 +13,7 @@
 ## Description
 This is a REST API Social Media App using MongoDB, Mongoose, and Express.JS. A user can be added, have associated friends, create thoughts and reactions, and update their thoughts and user information. Users can also remove friends, delete thoughts, delete reactions, and be deleted from the system. 
 
-[Example Video](source) (link)
+[Example Video](./assets/Social%20Media%20API.mp4) (https://drive.google.com/file/d/1Y9d99ejOKpwsNv9jGl6EiW7ErWHoPIZ-/view?usp=sharing)
 
 ## Technology
 | Technology Used        | Resource URL         |
