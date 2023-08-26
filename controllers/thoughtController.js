@@ -102,7 +102,59 @@ const thoughtController = {
                 // If there is an error, send it to the client
                 .catch(err => res.json(err));
             },
-}
+
+        // Delete a thought
+        removeThought({ params }, res) {
+            Thought.findOneAndDelete({ _id: params.thoughtId })
+                .then(dbThoughtData => {
+                    // If no thought is found, send 404
+                    if (!dbThoughtData) {
+                        res.status(404).json({ message: 'No thought was found with this id. Check your ID and try again.' });
+                        return;
+                    }
+                    // Remove the thought from the user's associated thoughts
+                    User.findOneAndUpdate(
+                        { username: dbThoughtData.username },
+                        { $pull: { thoughts: params.thoughtId } },
+                        { new: true }
+                    )
+                        .then(dbUserData => {
+                            // If no user is found, send 404
+                            if (!dbUserData) {
+                                res.status(404).json({ message: 'No user was found with this id. Check your ID and try again.' });
+                                return;
+                            }
+                    // Otherwise, send the data
+                    res.json({ message: 'The thought was successfully deleted.' });
+                })
+                // If there is an error, send it to the client
+                .catch(err => res.json(err));
+            })
+            // If there is an error, send it to the client
+            .catch(err => res.status(500).json(err));
+        },
+
+        // Delete a reaction
+        removeReaction({ params }, res) {
+            Thought.findOneAndUpdate(
+                { _id: params.thoughtId },
+                { $pull: { reactions: { reactionId: params.reactionId } } },
+                { new: true, runValidators: true }
+            )
+            // If the data is created, send the data
+                .then(dbThoughtData => {
+                    // If no thought is found, send 404
+                    if (!dbThoughtData) {
+                        res.status(404).json({ message: 'No thought was found with this id. Check your ID and try again.' });
+                        return;
+                    }
+                    // Otherwise, send the data
+                    res.json({ message: 'The reaction was successfully deleted.' });
+                })
+                // If there is an error, send it to the client
+                .catch(err => res.json(err));
+            }
+};
 
 // Export the thought controller
 module.exports = thoughtController;
