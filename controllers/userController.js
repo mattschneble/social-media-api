@@ -87,3 +87,6 @@ const userController = {
         .catch(err => res.status(500).json(err));
     },
 }
+
+// Export the user controller
+module.exports = userController;

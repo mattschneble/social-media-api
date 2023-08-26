@@ -11,9 +11,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Import routes
-const routes = require('./routes');
+app.use(require('./routes/index'))
 
 // Check if the server is running
 db.once('open', () => {

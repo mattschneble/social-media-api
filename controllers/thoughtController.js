@@ -103,3 +103,6 @@ const thoughtController = {
                 .catch(err => res.json(err));
             },
 }
+
+// Export the thought controller
+module.exports = thoughtController;
